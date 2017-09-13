@@ -1,3 +1,9 @@
+// Copyright (c) John McCabe 2017. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+// Package bitbar simplifies the creation of Bitbar plugins.
+//
+//
 package bitbar
 
 import (
@@ -40,9 +46,9 @@ type Style struct {
 	Font    string
 	Size    int
 	Length  int
-	Trim    bool
-	Emojize bool
-	Ansi    bool
+	Trim    *bool
+	Emojize *bool
+	Ansi    *bool
 }
 
 // Cmd wraps options related to commands which can be added to a line using the
@@ -50,8 +56,8 @@ type Style struct {
 type Cmd struct {
 	Bash     string
 	Params   []string
-	Terminal bool
-	Refresh  bool
+	Terminal *bool
+	Refresh  *bool
 }
 
 // StatusBar holds one of more Lines of text which are rendered in the status bar.
@@ -131,9 +137,9 @@ func (l *Line) Style(s Style) *Line {
 	l.font = s.Font
 	l.size = s.Size
 	l.length = s.Length
-	l.trim = &s.Trim
-	l.emojize = &s.Emojize
-	l.ansi = &s.Ansi
+	l.trim = s.Trim
+	l.emojize = s.Emojize
+	l.ansi = s.Ansi
 	return l
 }
 
@@ -149,8 +155,8 @@ func (l *Line) Style(s Style) *Line {
 func (l *Line) Command(c Cmd) *Line {
 	l.bash = c.Bash
 	l.params = c.Params
-	l.terminal = &c.Terminal
-	l.refresh = &c.Refresh
+	l.terminal = c.Terminal
+	l.refresh = c.Refresh
 	return l
 }
 
