@@ -1,19 +1,26 @@
-package main
+package bitbar
 
 import (
 	"fmt"
-
-	"github.com/johnmccabe/bitbar"
 )
 
-func main() {
-	b := bitbar.New()
-	s := bitbar.Style{
+// Example Bitbar plugin resulting in the following output:
+//  MenuItem 1 | color=red href=http://localhost:8080 dropdown=false
+//  MenuItem 2 | dropdown=false
+//  ---
+//  DropDown Level 1 A | color=red font=UbuntuMono-Bold size=12
+//  -- DropDown Level 2 A
+//  -- DropDown Level 1 B | bash="/path/to/cmd" param1=arg1 param2=arg2
+//  ---- DropDown Level 3 A
+//  DropDown Level 1 B | color=red font=UbuntuMono-Bold size=12
+func Example() {
+	b := New()
+	s := Style{
 		Font:  "UbuntuMono-Bold",
 		Color: "red",
 		Size:  12,
 	}
-	c := bitbar.Cmd{
+	c := Cmd{
 		Bash:   "/path/to/cmd",
 		Params: []string{"arg1", "arg2"},
 	}
