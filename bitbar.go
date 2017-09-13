@@ -5,6 +5,8 @@
 //
 // Provides helper functions for adding lines and submenus along with setting
 // command, style options etc using function chaining.
+//
+// See the BitBar project for more info - https://github.com/matryer/bitbar
 package bitbar
 
 import (
