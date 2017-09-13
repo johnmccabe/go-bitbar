@@ -314,60 +314,87 @@ func renderSubMenu(d *SubMenu) string {
 func renderLine(l *Line) string {
 	result := []string{l.text}
 	options := []string{"|"}
-	if l.href != "" {
-		options = append(options, fmt.Sprintf("href=%s", l.href))
-	}
-	if l.color != "" {
-		options = append(options, fmt.Sprintf("color=%s", l.color))
-	}
-	if l.font != "" {
-		options = append(options, fmt.Sprintf("font=%s", l.font))
-	}
-	if l.size > 0 {
-		options = append(options, fmt.Sprintf("size=%d", l.size))
-	}
-	if l.bash != "" {
-		options = append(options, fmt.Sprintf("bash=\"%s\"", l.bash))
-	}
-	if len(l.params) > 0 {
-		for i, param := range l.params {
-			options = append(options, fmt.Sprintf("param%d=%s", i+1, param))
-		}
-	}
-	if l.terminal != nil {
-		options = append(options, fmt.Sprintf("terminal=%t", *l.terminal))
-	}
-	if l.refresh != nil {
-		options = append(options, fmt.Sprintf("refresh=%t", *l.refresh))
-	}
-	if l.dropDown != nil {
-		options = append(options, fmt.Sprintf("dropdown=%t", *l.dropDown))
-	}
-	if l.length > 0 {
-		options = append(options, fmt.Sprintf("length=%d", l.length))
-	}
-	if l.trim != nil {
-		options = append(options, fmt.Sprintf("trim=%t", *l.trim))
-	}
-	if l.alternate != nil {
-		options = append(options, fmt.Sprintf("alternate=%t", *l.alternate))
-	}
-	if len(l.templateImage) > 0 {
-		options = append(options, fmt.Sprintf("templateImage=%s", l.templateImage))
-	}
-	if len(l.image) > 0 {
-		options = append(options, fmt.Sprintf("image=%s", l.image))
-	}
-	if l.emojize != nil {
-		options = append(options, fmt.Sprintf("emojize=%t", *l.emojize))
-	}
-	if l.ansi != nil {
-		options = append(options, fmt.Sprintf("ansi=%t", *l.ansi))
-	}
+	options = append(options, renderStyleOptions(l)...)
+	options = append(options, renderCommandOptions(l)...)
+	options = append(options, renderImageOptions(l)...)
+	options = append(options, renderMiscOptions(l)...)
 
 	if len(options) > 1 {
 		result = append(result, options...)
 	}
 
 	return strings.Join(result, " ")
+}
+
+func renderImageOptions(l *Line) []string {
+	imageOptions := []string{}
+	if len(l.templateImage) > 0 {
+		imageOptions = append(imageOptions, fmt.Sprintf("templateImage=%s", l.templateImage))
+	}
+	if len(l.image) > 0 {
+		imageOptions = append(imageOptions, fmt.Sprintf("image=%s", l.image))
+	}
+
+	return imageOptions
+}
+
+func renderMiscOptions(l *Line) []string {
+	miscOptions := []string{}
+	if l.href != "" {
+		miscOptions = append(miscOptions, fmt.Sprintf("href=%s", l.href))
+	}
+	if l.dropDown != nil {
+		miscOptions = append(miscOptions, fmt.Sprintf("dropdown=%t", *l.dropDown))
+	}
+	if l.alternate != nil {
+		miscOptions = append(miscOptions, fmt.Sprintf("alternate=%t", *l.alternate))
+	}
+
+	return miscOptions
+}
+
+func renderStyleOptions(l *Line) []string {
+	styleOptions := []string{}
+	if l.color != "" {
+		styleOptions = append(styleOptions, fmt.Sprintf("color=%s", l.color))
+	}
+	if l.font != "" {
+		styleOptions = append(styleOptions, fmt.Sprintf("font=%s", l.font))
+	}
+	if l.size > 0 {
+		styleOptions = append(styleOptions, fmt.Sprintf("size=%d", l.size))
+	}
+	if l.length > 0 {
+		styleOptions = append(styleOptions, fmt.Sprintf("length=%d", l.length))
+	}
+	if l.trim != nil {
+		styleOptions = append(styleOptions, fmt.Sprintf("trim=%t", *l.trim))
+	}
+	if l.emojize != nil {
+		styleOptions = append(styleOptions, fmt.Sprintf("emojize=%t", *l.emojize))
+	}
+	if l.ansi != nil {
+		styleOptions = append(styleOptions, fmt.Sprintf("ansi=%t", *l.ansi))
+	}
+	return styleOptions
+}
+
+func renderCommandOptions(l *Line) []string {
+	commandOptions := []string{}
+	if l.bash != "" {
+		commandOptions = append(commandOptions, fmt.Sprintf("bash=\"%s\"", l.bash))
+	}
+	if len(l.params) > 0 {
+		for i, param := range l.params {
+			commandOptions = append(commandOptions, fmt.Sprintf("param%d=%s", i+1, param))
+		}
+	}
+	if l.terminal != nil {
+		commandOptions = append(commandOptions, fmt.Sprintf("terminal=%t", *l.terminal))
+	}
+	if l.refresh != nil {
+		commandOptions = append(commandOptions, fmt.Sprintf("refresh=%t", *l.refresh))
+	}
+
+	return commandOptions
 }
