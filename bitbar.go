@@ -3,7 +3,8 @@
 
 // Package bitbar simplifies the creation of Bitbar plugins.
 //
-//
+// Provides helper functions for adding lines and submenus along with setting
+// command, style options etc using function chaining.
 package bitbar
 
 import (
