@@ -40,6 +40,7 @@ type Line struct {
 	params        []string
 	templateImage string
 	image         string
+	hr            bool
 }
 
 // Style wraps options related to text presentation which can be added to a line
@@ -110,6 +111,17 @@ func (p *Plugin) NewSubMenu() *SubMenu {
 func (d *SubMenu) Line(s string) *Line {
 	l := new(Line)
 	l.text = s
+	d.Lines = append(d.Lines, l)
+	return l
+}
+
+// HR turns a line into a horizontal delimiter, useful for breaking menu items
+// into logical groups.
+//  submenu.Line("").HR()
+func (d *SubMenu) HR() *Line {
+	l := new(Line)
+	l.hr = true
+	l.text = "---"
 	d.Lines = append(d.Lines, l)
 	return l
 }
@@ -299,7 +311,9 @@ func (p *Plugin) Render() string {
 		output = output + fmt.Sprintf("%s\n", renderLine(line))
 	}
 	output = output + "---\n"
-	output = output + renderSubMenu(p.SubMenu)
+	if p.SubMenu != nil {
+		output = output + renderSubMenu(p.SubMenu)
+	}
 	return output
 }
 
@@ -312,7 +326,11 @@ func renderSubMenu(d *SubMenu) string {
 	for _, line := range d.Lines {
 		switch v := line.(type) {
 		case *Line:
-			output = output + fmt.Sprintf("%s%s\n", prefix, renderLine(v))
+			if line.(*Line).hr {
+				output = output + fmt.Sprintf("%s%s\n", strings.TrimSpace(prefix), renderLine(v))
+			} else {
+				output = output + fmt.Sprintf("%s%s\n", prefix, renderLine(v))
+			}
 		case *SubMenu:
 			output = output + renderSubMenu(v)
 		}
