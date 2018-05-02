@@ -4,7 +4,7 @@
 
 # BitBar Go library
 
-This repo contains a library for creating [BitBar](https://github.com/matryer/bitbar) plugins in Go.
+This repo contains a package for creating [BitBar](https://github.com/matryer/bitbar) plugins in Go.
 
 ## Installation
 
