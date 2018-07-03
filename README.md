@@ -1,17 +1,16 @@
+# BitBar Go library
+
 [![Travis Badge]][Travis]
 [![Go Report Card Badge]][Go Report Card]
 [![GoDoc Badge]][GoDoc]
-
-# BitBar Go library
 
 This repo contains a package for creating [BitBar](https://github.com/matryer/bitbar) plugins in Go.
 
 ## Installation
 
 Install the bitbar library with `go get`, like so:
-```
-go get -u github.com/johnmccabe/go-bitbar
-```
+
+    go get -u github.com/johnmccabe/go-bitbar
 
 ## Example
 
