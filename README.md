@@ -14,11 +14,11 @@ Install the bitbar library with `go get`, like so:
 
 ## Example
 
-Refer to the [godocs](https://godoc.org/github.com/johnmccabe/bitbar) for an example.
+Refer to the [godocs](https://godoc.org/github.com/johnmccabe/go-bitbar) for an example.
 
-[Travis]: https://travis-ci.org/johnmccabe/bitbar
-[Travis Badge]: https://travis-ci.org/johnmccabe/bitbar.svg?branch=master
-[Go Report Card]: https://goreportcard.com/report/github.com/johnmccabe/bitbar
-[Go Report Card Badge]: https://goreportcard.com/badge/github.com/johnmccabe/bitbar
-[GoDoc]: https://godoc.org/github.com/johnmccabe/bitbar
-[GoDoc Badge]: https://godoc.org/github.com/johnmccabe/bitbar?status.svg
+[Travis]: https://travis-ci.org/johnmccabe/go-bitbar
+[Travis Badge]: https://travis-ci.org/johnmccabe/go-bitbar.svg?branch=master
+[Go Report Card]: https://goreportcard.com/report/github.com/johnmccabe/go-bitbar
+[Go Report Card Badge]: https://goreportcard.com/badge/github.com/johnmccabe/go-bitbar
+[GoDoc]: https://godoc.org/github.com/johnmccabe/go-bitbar
+[GoDoc Badge]: https://godoc.org/github.com/johnmccabe/go-bitbar?status.svg
