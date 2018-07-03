@@ -10,7 +10,7 @@ This repo contains a package for creating [BitBar](https://github.com/matryer/bi
 
 Install the bitbar library with `go get`, like so:
 ```
-go get -u github.com/johnmccabe/bitbar
+go get -u github.com/johnmccabe/go-bitbar
 ```
 
 ## Example
