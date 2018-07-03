@@ -304,6 +304,15 @@ func (l *Line) Ansi(b bool) *Line {
 	return l
 }
 
+// CopyToClipboard is a helper to copy the specified text to the OSX clipboard.
+//  line.CopyToClipboard("some text")
+func (l *Line) CopyToClipboard(text string) *Line {
+	line := l.Bash("/bin/bash").
+		Params([]string{"-c", fmt.Sprintf("'echo -n %s | pbcopy'", text)}).
+		Terminal(false)
+	return line
+}
+
 // Render the Bitbar menu as a string.
 func (p *Plugin) Render() string {
 	var output string
