@@ -356,10 +356,10 @@ func renderLine(l *Line) string {
 func renderImageOptions(l *Line) []string {
 	imageOptions := []string{}
 	if len(l.templateImage) > 0 {
-		imageOptions = append(imageOptions, fmt.Sprintf("templateImage=%s", l.templateImage))
+		imageOptions = append(imageOptions, fmt.Sprintf("templateImage='%s'", l.templateImage))
 	}
 	if len(l.image) > 0 {
-		imageOptions = append(imageOptions, fmt.Sprintf("image=%s", l.image))
+		imageOptions = append(imageOptions, fmt.Sprintf("image='%s'", l.image))
 	}
 
 	return imageOptions
@@ -368,13 +368,13 @@ func renderImageOptions(l *Line) []string {
 func renderMiscOptions(l *Line) []string {
 	miscOptions := []string{}
 	if l.href != "" {
-		miscOptions = append(miscOptions, fmt.Sprintf("href=%s", l.href))
+		miscOptions = append(miscOptions, fmt.Sprintf("href='%s'", l.href))
 	}
 	if l.dropDown != nil {
 		miscOptions = append(miscOptions, fmt.Sprintf("dropdown=%t", *l.dropDown))
 	}
 	if l.alternate != nil {
-		miscOptions = append(miscOptions, fmt.Sprintf("alternate=%t", *l.alternate))
+		miscOptions = append(miscOptions, fmt.Sprintf("alternate='%t'", *l.alternate))
 	}
 
 	return miscOptions
@@ -383,10 +383,10 @@ func renderMiscOptions(l *Line) []string {
 func renderStyleOptions(l *Line) []string {
 	styleOptions := []string{}
 	if l.color != "" {
-		styleOptions = append(styleOptions, fmt.Sprintf("color=%s", l.color))
+		styleOptions = append(styleOptions, fmt.Sprintf("color=\"%s\"", l.color))
 	}
 	if l.font != "" {
-		styleOptions = append(styleOptions, fmt.Sprintf("font=%s", l.font))
+		styleOptions = append(styleOptions, fmt.Sprintf("font=\"%s\"", l.font))
 	}
 	if l.size > 0 {
 		styleOptions = append(styleOptions, fmt.Sprintf("size=%d", l.size))
