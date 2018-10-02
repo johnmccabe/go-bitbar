@@ -321,8 +321,8 @@ func (l *Line) CopyToClipboard(text string) *Line {
 	return line
 }
 
-// Render the Bitbar menu as a string.
-func (p *Plugin) Render() string {
+// Render the Bitbar menu to Stdout.
+func (p *Plugin) Render() {
 	var output string
 	for _, line := range p.StatusBar.Lines {
 		output = output + fmt.Sprintf("%s\n", renderLine(line))
@@ -331,7 +331,7 @@ func (p *Plugin) Render() string {
 	if p.SubMenu != nil {
 		output = output + renderSubMenu(p.SubMenu)
 	}
-	return output
+	fmt.Println(output)
 }
 
 func renderSubMenu(d *SubMenu) string {

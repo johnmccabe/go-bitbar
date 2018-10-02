@@ -1,9 +1,5 @@
 package bitbar
 
-import (
-	"fmt"
-)
-
 // Example Bitbar plugin resulting in the following output:
 //  MenuItem 1 | color=red href=http://localhost:8080 dropdown=false
 //  MenuItem 2 | dropdown=false
@@ -35,5 +31,5 @@ func Example() {
 	subsubmenu.Line("DropDown Level 3 A")
 	menu.Line("DropDown Level 1 B").Style(s)
 
-	fmt.Print(b.Render())
+	b.Render()
 }
