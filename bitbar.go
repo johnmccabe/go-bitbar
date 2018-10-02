@@ -11,6 +11,7 @@ package bitbar
 
 import (
 	"fmt"
+	"image"
 	"strings"
 )
 
@@ -113,6 +114,14 @@ func (d *SubMenu) Line(s string) *Line {
 	l.text = s
 	d.Lines = append(d.Lines, l)
 	return l
+}
+
+// Image adds a line with an image to the dropdown which will be added after
+// the main dropdown delimiter (`---`). Use a 144 DPI resolution to support
+// Retina displays.
+//  line.Image(myImg)
+func (d *SubMenu) Image(img image.Image) *Line {
+	return d.Line("").Image(img)
 }
 
 // HR turns a line into a horizontal delimiter, useful for breaking menu items
@@ -281,12 +290,10 @@ func (l *Line) TemplateImage(s string) *Line {
 	return l
 }
 
-// Image set an image for the line. The image data must be passed as base64 encoded
-// string. Use a 144 DPI resolution to support Retina displays. The imageformat can be any
-// of the formats supported by Mac OS X
-//  line.Image("iVBORw0KGgoAAAANSUhEUgAAA...")
-func (l *Line) Image(s string) *Line {
-	l.image = s
+// Image set an image for the line. Use a 144 DPI resolution to support Retina displays.
+//  line.Image(myImg)
+func (l *Line) Image(img image.Image) *Line {
+	l.image = toBase64(img)
 	return l
 }
 
