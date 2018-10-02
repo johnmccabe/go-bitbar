@@ -11,6 +11,7 @@ package bitbar
 
 import (
 	"fmt"
+	"image"
 	"strings"
 )
 
@@ -113,6 +114,14 @@ func (d *SubMenu) Line(s string) *Line {
 	l.text = s
 	d.Lines = append(d.Lines, l)
 	return l
+}
+
+// Image adds a line with an image to the dropdown which will be added after
+// the main dropdown delimiter (`---`). Use a 144 DPI resolution to support
+// Retina displays.
+//  line.Image(myImg)
+func (d *SubMenu) Image(img image.Image) *Line {
+	return d.Line("").Image(img)
 }
 
 // HR turns a line into a horizontal delimiter, useful for breaking menu items
@@ -228,13 +237,14 @@ func (l *Line) Terminal(b bool) *Line {
 	return l
 }
 
-// Refresh sets a flag which controls whether clicking the line results in the plugin
-// being refreshed. If the line has a bash script attached then the plugin is refreshed
-// after the script finishes.
-//  line.Bash("/Users/user/BitBar_Plugins/scripts/nginx.restart.sh").Refresh(true)
-//  line.Refresh(true)
-func (l *Line) Refresh(b bool) *Line {
-	l.refresh = &b
+// Refresh controls whether clicking the line results in the plugin being refreshed.
+// If the line has a bash script attached then the plugin is refreshed after the
+// script finishes.
+//  line.Bash("/Users/user/BitBar_Plugins/scripts/nginx.restart.sh").Refresh()
+//  line.Refresh()
+func (l *Line) Refresh() *Line {
+	refreshEnabled := true
+	l.refresh = &refreshEnabled
 	return l
 }
 
@@ -281,12 +291,10 @@ func (l *Line) TemplateImage(s string) *Line {
 	return l
 }
 
-// Image set an image for the line. The image data must be passed as base64 encoded
-// string. Use a 144 DPI resolution to support Retina displays. The imageformat can be any
-// of the formats supported by Mac OS X
-//  line.Image("iVBORw0KGgoAAAANSUhEUgAAA...")
-func (l *Line) Image(s string) *Line {
-	l.image = s
+// Image set an image for the line. Use a 144 DPI resolution to support Retina displays.
+//  line.Image(myImg)
+func (l *Line) Image(img image.Image) *Line {
+	l.image = toBase64(img)
 	return l
 }
 
@@ -313,8 +321,8 @@ func (l *Line) CopyToClipboard(text string) *Line {
 	return line
 }
 
-// Render the Bitbar menu as a string.
-func (p *Plugin) Render() string {
+// Render the Bitbar menu to Stdout.
+func (p *Plugin) Render() {
 	var output string
 	for _, line := range p.StatusBar.Lines {
 		output = output + fmt.Sprintf("%s\n", renderLine(line))
@@ -323,7 +331,7 @@ func (p *Plugin) Render() string {
 	if p.SubMenu != nil {
 		output = output + renderSubMenu(p.SubMenu)
 	}
-	return output
+	fmt.Println(output)
 }
 
 func renderSubMenu(d *SubMenu) string {
