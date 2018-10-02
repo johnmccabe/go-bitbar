@@ -237,13 +237,14 @@ func (l *Line) Terminal(b bool) *Line {
 	return l
 }
 
-// Refresh sets a flag which controls whether clicking the line results in the plugin
-// being refreshed. If the line has a bash script attached then the plugin is refreshed
-// after the script finishes.
-//  line.Bash("/Users/user/BitBar_Plugins/scripts/nginx.restart.sh").Refresh(true)
-//  line.Refresh(true)
-func (l *Line) Refresh(b bool) *Line {
-	l.refresh = &b
+// Refresh controls whether clicking the line results in the plugin being refreshed.
+// If the line has a bash script attached then the plugin is refreshed after the
+// script finishes.
+//  line.Bash("/Users/user/BitBar_Plugins/scripts/nginx.restart.sh").Refresh()
+//  line.Refresh()
+func (l *Line) Refresh() *Line {
+	refreshEnabled := true
+	l.refresh = &refreshEnabled
 	return l
 }
 
