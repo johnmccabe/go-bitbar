@@ -7,7 +7,9 @@
 
 This repo contains a package for creating [BitBar](https://github.com/matryer/bitbar) plugins in Go.
 
-Creating a BitBar plugin is as simple as:
+## Usage
+
+Creating a BitBar plugin is as simple as (see the [godocs](https://godoc.org/github.com/johnmccabe/go-bitbar) for more details):
 
 ```go
 package main
@@ -25,15 +27,8 @@ func main() {
 }
 ```
 
-## Installation
-
-Install the bitbar library with `go get`, like so:
-
-    go get -u github.com/johnmccabe/go-bitbar
-
 ## Examples
 
-- Refer to the [godocs](https://godoc.org/github.com/johnmccabe/go-bitbar) for an example.
 - [vmpooler-bitbar](https://github.com/johnmccabe/vmpooler-bitbar) is used to monitor and manage VMs running on [Puppetlabs vmpooler](https://github.com/puppetlabs/vmpooler)
 - [openfaas-bitbar](https://github.com/johnmccabe/openfaas-bitbar) is used to monitor and manage functions running on [OpenFaaS](https://github.com/openfaas/faas)
 - *If you are using [go-bitbar](https://github.com/johnmccabe/go-bitbar) please reach out to be added to this list*
