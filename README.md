@@ -7,6 +7,24 @@
 
 This repo contains a package for creating [BitBar](https://github.com/matryer/bitbar) plugins in Go.
 
+Creating a BitBar plugin is as simple as:
+
+```go
+package main
+
+import "github.com/johnmccabe/go-bitbar"
+
+func main() {
+    app := bitbar.New()
+    app.StatusLine("Hello")
+
+    submenu := app.NewSubMenu()
+    submenu.Line("World!")
+
+    app.Render()
+}
+```
+
 ## Installation
 
 Install the bitbar library with `go get`, like so:
