@@ -331,7 +331,7 @@ func (p *Plugin) Render() {
 	if p.SubMenu != nil {
 		output = output + renderSubMenu(p.SubMenu)
 	}
-	fmt.Println(output)
+	fmt.Print(output)
 }
 
 func renderSubMenu(d *SubMenu) string {
